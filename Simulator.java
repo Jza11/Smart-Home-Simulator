@@ -15,5 +15,21 @@ public class Simulator{
         for (int i = 0; i<5; i++){
             smoke.update();
         }
+
+        System.out.println("Door Detector");
+        Sensor<Boolean> mainDoor = SensorFactory.createDoorSensor("D1", "Entrance Door");
+        mainDoor.attachObserver(new DoorObserver());
+
+        for (int i = 0; i<5; i++){
+            mainDoor.update();
+        }
+
+        System.out.println("Motion Detector");
+        Sensor<Boolean> livingRoomMovement = SensorFactory.createMotionSensor("M1", "Living Room");
+        livingRoomMovement.attachObserver(new MotionObserver());
+
+        for (int i = 0; i<5; i++){
+            livingRoomMovement.update();
+        }
     }
 }

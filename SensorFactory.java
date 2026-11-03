@@ -8,4 +8,12 @@ public class SensorFactory {
     public static Sensor<Boolean> createSmokeDetector(String id, String location){
         return new SmokeDetector(id, location, new ProbStrategy(0.2));
     }
+
+    public static Sensor<Boolean> createDoorSensor(String id, String location){
+        return new DoorSensor(id, location, new ProbStrategy(0.1));
+    }
+
+    public static Sensor<Boolean> createMotionSensor(String id, String location){
+        return new MotionSensor(id, location, new ProbStrategy(0.8));
+    }
 }
