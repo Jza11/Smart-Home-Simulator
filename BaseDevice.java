@@ -35,6 +35,8 @@ public abstract class BaseDevice implements Device {
     /**
      * 
      * Method to turn on the device, It notifies the observers abd set the on variable to true
+     * The concrete performturnon method will be implemented inside subclasses, but the subclass will use
+     * the general turn on method
      */
     public final void turnOn() {
         if (on) return;
@@ -46,6 +48,8 @@ public abstract class BaseDevice implements Device {
     /**
      * 
      * Method to turn off the device. It notifies the observers and set the on variable to false
+     * The concrete performturnoff method will be implemented inside subclasses, but the subclass will use
+     * the general turn off method
      */
     public final void turnOff() {
         if (!on) return;
@@ -93,7 +97,7 @@ public abstract class BaseDevice implements Device {
 
     /**
      * 
-     * Step methods that need to be implemented by subclasses to allow a specific behavior
+     * Step methods that need to be implemented by subclasses to allow a specific behavior. 
      */
     protected abstract void performTurnOn();
     protected abstract void performTurnOff();
