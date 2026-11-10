@@ -92,7 +92,7 @@ public abstract class BaseSensor<T> implements Sensor<T>{
    }
 
      /**
-     * Detach an observer to this sensor
+     * Detach an observer from this sensor
      */
    public void detachObserver(SensorObserver<T> listener){
         observers.remove(listener);
