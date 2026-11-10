@@ -16,4 +16,8 @@ public class SensorFactory {
     public static Sensor<Boolean> createMotionSensor(String id, String location){
         return new MotionSensor(id, location, new ProbStrategy(0.8));
     }
+
+    public static Sensor<Boolean> createDoorSensor(String id, String location, DoorLockDevice doorLock) {
+        return new DoorSensor(id, location, new LockStateStrategy(doorLock));
+    }
 }
