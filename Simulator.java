@@ -17,11 +17,11 @@ public class Simulator{
         }
 
         System.out.println("Door Detector");
-        Sensor<Boolean> mainDoor = SensorFactory.createDoorSensor("D1", "Entrance Door");
-        mainDoor.attachObserver(new DoorObserver());
+        Sensor<Boolean> testDoor = SensorFactory.createDoorSensor("D1", "Test Door");
+        testDoor.attachObserver(new DoorObserver());
 
         for (int i = 0; i<5; i++){
-            mainDoor.update();
+            testDoor.update();
         }
 
         System.out.println("Motion Detector");
@@ -37,7 +37,7 @@ public class Simulator{
         Device livingLight = new LightDevice("L-02", "Living Room");
 
         DeviceObserver lightObs = (device, on) -> 
-            System.out.println("Light" + device.getDeviceId() + " at " + device.getLocation() + " is now: " + (on ? "ON" : "OFF"));
+            System.out.println("Light " + device.getDeviceId() + " at " + device.getLocation() + " is now: " + (on ? "ON" : "OFF"));
 
         bedroomLight.attachObserver(lightObs);
         livingLight.attachObserver(lightObs);
@@ -49,5 +49,19 @@ public class Simulator{
         livingLight.turnOn();
         livingLight.turnOn();
         livingLight.turnOff();
+
+        DoorLockDevice mainDoorLock = new DoorLockDevice("D-01", "Main Door");
+
+        Sensor<Boolean> sensorEntranceDoor = SensorFactory.createDoorSensor("D2", "Entrance Door", mainDoorLock);
+        sensorEntranceDoor.attachObserver(new DoorObserver());
+
+        System.out.println("\nTesting the door and sensor connection \n");
+
+        sensorEntranceDoor.update();
+        mainDoorLock.turnOn();
+        mainDoorLock.turnOn();
+        sensorEntranceDoor.update();
+        mainDoorLock.turnOff();
+        sensorEntranceDoor.update();
     }
 }
