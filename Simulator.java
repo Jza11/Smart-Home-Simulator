@@ -31,5 +31,23 @@ public class Simulator{
         for (int i = 0; i<5; i++){
             livingRoomMovement.update();
         }
+
+        Device bedroomLight = new LightDevice("L-01", "Bedroom 1");
+
+        Device livingLight = new LightDevice("L-02", "Living Room");
+
+        DeviceObserver lightObs = (device, on) -> 
+            System.out.println("Light" + device.getDeviceId() + " at " + device.getLocation() + " is now: " + (on ? "ON" : "OFF"));
+
+        bedroomLight.attachObserver(lightObs);
+        livingLight.attachObserver(lightObs);
+
+        bedroomLight.turnOn();
+        bedroomLight.turnOn();
+        bedroomLight.turnOff();
+
+        livingLight.turnOn();
+        livingLight.turnOn();
+        livingLight.turnOff();
     }
 }
